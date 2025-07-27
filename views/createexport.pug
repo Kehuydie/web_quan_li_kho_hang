@@ -1,0 +1,96 @@
+doctype html
+html
+  head
+    title #{title}
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css")
+  script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")
+    link(rel="stylesheet", href="/css/createexport.css")
+  body
+    button.btn.btn-primary.position-fixed.top-0.start-0.m-3.z-3(type="button", data-bs-toggle="offcanvas", data-bs-target="#sidebarMenu")
+        i.bi.bi-list.me-1
+        | >
+    .offcanvas.offcanvas-start(id="sidebarMenu", tabindex="-1")
+        .offcanvas-header
+            h5.offcanvas-title Menu
+            button.btn-close(type="button", data-bs-dismiss="offcanvas")
+        .offcanvas-body
+            ul.nav.flex-column.nav-pills
+                li.nav-item
+                    a.nav-link(href="/product") Sản phẩm
+                li.nav-item
+                    a.nav-link(href="/supplier") Nhà cung cấp
+                li.nav-item
+                    a.nav-link(href="/import") Phiếu nhập
+                li.nav-item
+                    a.nav-link(href="/import/create") Tạo phiếu nhập
+                li.nav-item
+                    a.nav-link(href="/export") Phiếu xuất
+                li.nav-item
+                    a.nav-link(href="/export/create") Tạo phiếu xuất
+    h1.text-center Tạo phiếu xuất 
+    .row
+        .col-md-7
+            .border.rounded.p-2
+                .table-wrapper(style="max-height:800px; overflow-y:auto;")
+                    table.table.table-striped.table-bordered.table-hover
+                        thead.table-success
+                            tr
+                                th check
+                                th Mã sản phẩm
+                                th Tên sản phẩm 
+                                th Số lượng
+                                th Đơn giá
+                        tbody
+                            each product in getproduct
+                                tr
+                                    td 
+                                        input(type="checkbox",value=`${product.product_id}`,name="proid[]",class="itemcheckbox",data-name=product.product_name,data-id=product.product_id,data-sellprice=product.sell_price,data-quantity=product.stock_quantity)
+                                    td= product.product_id
+                                    td= product.product_name
+                                    td= product.stock_quantity
+                                    td= product.import_price
+        .col-md-5
+            .mb-2.fw-bold
+                form(action="/export/add" method="POST" id="exportForm")
+                    .div.mb-3
+                        label.form-label(for="customer_name") tên khách hàng
+                        input#note.form-control(type="text", name="customer_name", placeholder="Nhập tên khách hàng...")
+                    .div.mb-3
+                        label.form-label(for="customer_phone") SDT
+                        input#note.form-control(type="number", name="customer_phone", placeholder="Nhập số điện thoại...")
+
+                    label.form-label(for="statusSelect") Chọn trạng thái 
+                    select.form-select#statusSelect(name="status")
+                        option(value="") -- Chọn --
+                        option(value="pending") pending
+                        option(value="completed") completed
+                        option(value="cancelled") cancelled
+                    
+                    .div.mb-3
+                        label.form-label(for="note") Ghi chú
+                        input#note.form-control(type="text", name="note", placeholder="Nhập ghi chú...")
+                        
+                    input(type="hidden" name="details" id="exportDetailsInput")
+
+                    //- button.btn.btn-primary(type="submit") Nhập hàng
+                .border.rounded.p-2
+                    .table-wrapper(style="max-height:600px; overflow-y:auto;height:300px;")
+                        table.table.table-striped.table-bordered.table-hover
+                            thead.table-success
+                                tr
+                                    th STT
+                                    th Mã SP
+                                    th Tên SP
+                                    th Số lượng
+                                    th Đơn giá
+                                    th delete
+                            tbody.add
+            button.btn.btn-primary.submit(type="submit") Nhập hàng 
+
+
+    .form-group.d-flex.align-items-center.gap-2
+        label.me-2(for="quantity") Số lượng
+        input#quantity.form-control(type="number", min="1", value="1", style="width: 80px;")
+        button.btn.btn-success(type="button",id='add-to-list')
+            i.bi.bi-plus-circle-fill.me-1 Thêm sản phẩm 
+script(src="/script/createexport.js") 
