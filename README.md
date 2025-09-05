@@ -1,5 +1,6 @@
 # Quản lý kho hàng
 
+```mermaid
 erDiagram
     CATEGORY ||--o{ PRODUCT : contains
     SUPPLIER ||--o{ IMPORT_ORDER : provides
