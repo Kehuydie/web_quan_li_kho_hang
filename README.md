@@ -1,22 +1,18 @@
 # Quản lý kho hàng
 
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 101543.png" alt="Demo" width="500"/>
-
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 101747.png" alt="Demo" width="500"/>
-
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 101901.png" alt="Demo" width="500"/>
-
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 101951.png" alt="Demo" width="500"/>
-
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 102242.png" alt="Demo" width="500"/>
-
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 102446.png" alt="Demo" width="500"/>
-
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 102527.png" alt="Demo" width="500"/>
-
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 102614.png" alt="Demo" width="500"/>
-
-<img src="C:\Users\THIN15\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2025-09-05 102648.png" alt="Demo" width="500"/>
+Category (category_id PK, category)
+   │
+   └───< Product (product_id PK, category_id FK, product_name, import_price, sell_price, ...)
+            │
+            ├───< ImportDetail (id PK, import_id FK, product_id FK, quantity, import_price, ...)
+            │            │
+            │            └─── ImportOrder (import_id PK, supplier_id FK, total_amount, status, ...)
+            │                             │
+            │                             └───< Supplier (supplier_id PK, supplier_name, ...)
+            │
+            └───< ExportDetail (id PK, export_id FK, product_id FK, quantity, sell_price, subtotal, ...)
+                         │
+                         └─── ExportOrder (export_id PK, customer_name, export_date, status, ...)
 
 
 
