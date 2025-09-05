@@ -1,6 +1,12 @@
 # Quản lý kho hàng
 
-<img src="C:\Users\THIN15\Downloads\Mermaid Chart - Create complex, visual diagrams with text. A smarter way of creating diagrams.-2025-09-05-035245.svg" alt="Demo" width="500"/>
+erDiagram
+    CATEGORY ||--o{ PRODUCT : contains
+    SUPPLIER ||--o{ IMPORT_ORDER : provides
+    IMPORT_ORDER ||--o{ IMPORT_DETAIL : has
+    PRODUCT ||--o{ IMPORT_DETAIL : listed_in
+    EXPORT_ORDER ||--o{ EXPORT_DETAIL : has
+    PRODUCT ||--o{ EXPORT_DETAIL : included_in
 
 
 
